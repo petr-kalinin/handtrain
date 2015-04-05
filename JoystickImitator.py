@@ -1,5 +1,15 @@
 class JoystickImitator:
+    _x = 0
+    _fac = 0
+    def __init__(self, x, fac):
+        self._x = x
+        self._fac = fac
+        
     def x(self):
-        return 10;
+        """Returns normalized x-coordinate in [-1,1]"""
+        self._x = self._x * self._fac
+        return self._x;
+        
     def y(self):
-        return 20;
+        """Returns normalized y-coordinate in [-1,1]"""
+        return 0;
