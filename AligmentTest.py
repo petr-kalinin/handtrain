@@ -26,9 +26,9 @@ class AligmentTest:
             
     def draw(self,curTime,x1,x2):
         self.drawer.reset()
-        self.drawer.drawObject(x1)
-        self.drawer.drawObject(x2)
-        self.drawer.drawObject(0)
+        self.drawer.drawObject(0, False)
+        self.drawer.drawObject(x1, True)
+        self.drawer.drawObject(x2, True)
         self.drawer.drawText(str(curTime))
         self.drawer.show()
     

@@ -4,17 +4,24 @@ from JoystickImitator import JoystickImitator
 from AligmentTest import AligmentTest
 
 class DummyDrawer:
+    s = ''
+    width = 80
     def reset(self):
-        print('')
+        self.s = ' ' * self.width
         
-    def drawObject(self,x):
-        print('object at %0.5f ' % x, end='')
+    def drawObject(self,x, active):
+        if active:
+            ch = '*'
+        else:
+            ch = '.'
+        pos = int(self.width * (1+x)/2)
+        self.s = self.s[:pos] + ch + self.s[pos+1:]
         
     def drawText(self,s):
-        print(s, end='')
+        self.s = self.s + s
         
     def show(self):
-        pass
+        print(self.s + '\r')
         
 
 class DummyTimer:
@@ -27,7 +34,8 @@ class DummyTimer:
         self.time = self.time + x
         time.sleep(x/1000)
 
-joy1 = JoystickImitator(-0.4, 0.9)
-joy2 = JoystickImitator(0.6, 0.95)
+joy1 = JoystickImitator(-0.4, 0.95)
+joy2 = JoystickImitator(0.6, 0.98)
 test = AligmentTest(joy1, joy2, DummyTimer(), DummyDrawer())
+test.requiredTime = 1000
 test.run()
