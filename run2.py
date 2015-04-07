@@ -3,6 +3,7 @@ import time
 
 from RectangleTest import RectangleTest
 from TestController import TestController
+from PygameDrawer import PygameDrawer
 
 class DummyDrawer:
     s = ''
@@ -49,7 +50,8 @@ class JoystickImitator:
 
 joy1 = JoystickImitator(-0.4, 0.2, 0.95)
 joy2 = JoystickImitator(0.6, -0.4, 0.98)
-test = RectangleTest(DummyDrawer())
+#test = RectangleTest(DummyDrawer())
+test = RectangleTest(PygameDrawer())
 controller = TestController(joy1, joy2, DummyTimer(), test)
 controller.requiredTime = 1000
 controller.run()

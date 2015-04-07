@@ -3,6 +3,7 @@ import time
 
 from AligmentTest import AligmentTest
 from TestController import TestController
+from PygameDrawer import PygameDrawer
 
 class DummyDrawer:
     s = ''
@@ -53,7 +54,8 @@ class JoystickImitator:
 
 joy1 = JoystickImitator(-0.4, 0.95)
 joy2 = JoystickImitator(0.6, 0.98)
-test = AligmentTest(DummyDrawer())
+#test = AligmentTest(DummyDrawer())
+test = AligmentTest(PygameDrawer())
 controller = TestController(joy1, joy2, DummyTimer(), test)
 controller.requiredTime = 1000
 controller.run()
