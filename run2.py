@@ -1,25 +1,19 @@
 #!/usr/bin/python3
 import time
 
-from AligmentTest import AligmentTest
+from RectangleTest import RectangleTest
 from TestController import TestController
 
 class DummyDrawer:
     s = ''
-    width = 80
     def reset(self):
-        self.s = ' ' * self.width
+        self.s = ''
         
-    def drawObject(self, x, active):
-        if active:
-            ch = '*'
-        else:
-            ch = '.'
-        pos = int(self.width * (1+x)/2)
-        self.s = self.s[:pos] + ch + self.s[pos+1:]
+    def drawRectangle(self, width, height):
+        self.s = self.s + " " + str(width) + " " + str(height)
         
     def drawText(self,s):
-        self.s = self.s + s
+        self.s = self.s + " " + s
         
     def setState(self, ok):
         self.ok = ok
@@ -41,19 +35,21 @@ class DummyTimer:
         
 class JoystickImitator:
     _x = 0
+    _x0 = 0
     _fac = 0
-    def __init__(self, x, fac):
+    def __init__(self, x, x0, fac):
         self._x = x
+        self._x0 = x0
         self._fac = fac
         
     def position(self):
         """Returns normalized (x,y)-coordinate in [-1,1]"""
-        self._x = self._x * self._fac
+        self._x = self._x0 + (self._x - self._x0) * self._fac
         return (self._x, 0);
 
-joy1 = JoystickImitator(-0.4, 0.95)
-joy2 = JoystickImitator(0.6, 0.98)
-test = AligmentTest(DummyDrawer())
+joy1 = JoystickImitator(-0.4, 0.2, 0.95)
+joy2 = JoystickImitator(0.6, -0.4, 0.98)
+test = RectangleTest(DummyDrawer())
 controller = TestController(joy1, joy2, DummyTimer(), test)
 controller.requiredTime = 1000
 controller.run()
