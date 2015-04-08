@@ -11,15 +11,22 @@ class TestController:
     def run(self):
         startTime = self.timer.currentTime()
         lastBadTime = 0
+	deltaSum = 0
+	deltaN = 0
         while True:
             curTime = self.timer.currentTime() - startTime
             pos1 = self.joystick1.position()
             pos2 = self.joystick2.position()
-            ok = self.test.process(curTime, pos1, pos2)
+            ok, delta = self.test.process(curTime, pos1, pos2)
+	    deltaSum += delta
+	    deltaN += 1
             if not ok:
                 lastBadTime = curTime
+		deltaSum = 0
+		deltaN = 0
             if lastBadTime < curTime-self.requiredTime:
                 break
             self.timer.sleep(self.delay)
         self.elapsedTime = curTime
+	self.delta = deltaSum / deltaN
             
