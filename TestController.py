@@ -14,6 +14,7 @@ class TestController:
         lastBadTime = 0
 	deltaSum = 0
 	deltaN = 0
+	initialDelta = -1
         while True:
             curTime = self.timer.currentTime() - startTime
             pos1 = self.joystick1.position()
@@ -21,6 +22,11 @@ class TestController:
             ok, delta = self.test.process(curTime, pos1, pos2)
 	    deltaSum += delta
 	    deltaN += 1
+	    if initialDelta < 0:
+		initialDelta = delta
+	    if abs(delta - initialDelta) < 1e-3:
+		startTime = curTime + startTime
+		curTime = 0
             if not ok:
                 lastBadTime = curTime
 		deltaSum = 0

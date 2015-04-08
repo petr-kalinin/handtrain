@@ -40,6 +40,7 @@ class JoystickImitator:
     _x = 0
     _x0 = 0
     _fac = 0
+    _num = 0
     def __init__(self, x, x0, fac):
         self._x = x
         self._x0 = x0
@@ -47,7 +48,9 @@ class JoystickImitator:
         
     def position(self):
         """Returns normalized (x,y)-coordinate in [-1,1]"""
-        self._x = self._x0 + (self._x - self._x0) * self._fac + random.uniform(-1e-3, 1e-3)
+        if self._num > 10:
+            self._x = self._x0 + (self._x - self._x0) * self._fac + random.uniform(-1e-3, 1e-3)
+        self._num += 1
         return (self._x, 0);
 
 class ConsoleWriter:
