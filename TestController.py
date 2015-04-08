@@ -1,12 +1,13 @@
 class TestController:
-    requiredTime = 5000
+    requiredTime = 15000
     delay = 10
 
-    def __init__(self, joystick1, joystick2, timer, test):
+    def __init__(self, joystick1, joystick2, timer, test, writer):
         self.joystick1 = joystick1
         self.joystick2 = joystick2
         self.timer = timer
         self.test = test
+	self.writer = writer
 
     def run(self):
         startTime = self.timer.currentTime()
@@ -26,6 +27,7 @@ class TestController:
 		deltaN = 0
             if lastBadTime < curTime-self.requiredTime:
                 break
+	    self.writer.write(curTime, delta)
             self.timer.sleep(self.delay)
         self.elapsedTime = curTime
 	self.delta = deltaSum / deltaN

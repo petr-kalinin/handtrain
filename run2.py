@@ -4,6 +4,7 @@ import random
 
 from RectangleTest import RectangleTest
 from TestController import TestController
+from FileWriter import FileWriter
 #from PygameDrawer import PygameDrawer
 
 class DummyDrawer:
@@ -49,11 +50,16 @@ class JoystickImitator:
         self._x = self._x0 + (self._x - self._x0) * self._fac + random.uniform(-1e-3, 1e-3)
         return (self._x, 0);
 
+class ConsoleWriter:
+    def write(self,a,b):
+        print(str(a) + " " + str(b))
+
 joy1 = JoystickImitator(-0.4, 0.2, 0.95)
 joy2 = JoystickImitator(0.6, -0.4, 0.98)
 test = RectangleTest(DummyDrawer())
+writer = FileWriter("run2.txt~")
 #test = RectangleTest(PygameDrawer())
-controller = TestController(joy1, joy2, DummyTimer(), test)
+controller = TestController(joy1, joy2, DummyTimer(), test, writer)
 controller.requiredTime = 1000
 controller.run()
 print(controller.delta)

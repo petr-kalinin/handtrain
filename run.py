@@ -4,6 +4,7 @@ import random
 
 from AligmentTest import AligmentTest
 from TestController import TestController
+from FileWriter import FileWriter
 #from PygameDrawer import PygameDrawer
 
 class DummyDrawer:
@@ -53,11 +54,16 @@ class JoystickImitator:
         self._x = self._x * self._fac + random.uniform(-1e-3, 1e-3)
         return (self._x, 0);
 
+class ConsoleWriter:
+    def write(self,a,b):
+        print(str(a) + " " + str(b))
+
 joy1 = JoystickImitator(-0.4, 0.95)
 joy2 = JoystickImitator(0.6, 0.98)
 test = AligmentTest(DummyDrawer())
+writer = FileWriter("run.txt~")
 #test = AligmentTest(PygameDrawer())
-controller = TestController(joy1, joy2, DummyTimer(), test)
+controller = TestController(joy1, joy2, DummyTimer(), test, writer)
 controller.requiredTime = 1000
 controller.run()
 print(controller.delta)
