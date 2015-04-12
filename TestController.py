@@ -20,6 +20,8 @@ class TestController:
                 lastBadTime = curTime
             if lastBadTime < curTime-self.requiredTime:
                 break
+            if self.test.interrupted:
+                break
             self.timer.sleep(self.delay)
         self.elapsedTime = curTime
             

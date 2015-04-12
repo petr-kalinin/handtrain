@@ -1,6 +1,7 @@
 import pygame, sys, os
 import atexit
 from pygame.locals import * # This module contains various constants used by Pygame
+import pygame.event
 
 pygame.init()
 pygame.joystick.init()
@@ -18,6 +19,8 @@ screen = None
 dimensions = (800, 600)
 
 font = pygame.font.Font(None, 60)
+
+events = ()
 
 def posToCoordinates(pos):
     x = int(pos[0] * dimensions[0])
@@ -53,7 +56,12 @@ def show():
 def getJoystickPosition(i):
     return (joysticks[i].get_axis(0), joystick[i].get_axis(1))
 
+def getEvents():
+    return events
 
+def requestNewEvents():
+    global events
+    events = pygame.event.get()
 
 @atexit.register
 def quit():

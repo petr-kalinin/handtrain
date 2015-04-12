@@ -2,6 +2,7 @@ class RectangleTest:
     eps = 1e-3
     needX1 = 0.6;
     needX2 = 0.3;
+    interrupted = False
 
     def __init__(self, drawer):
         self.drawer = drawer
@@ -13,6 +14,8 @@ class RectangleTest:
         x2 = (1+x2)/2
         ok = (abs(x1 - self.needX1)<self.eps) and (abs(x2 - self.needX2)<self.eps)
         self.draw(time, x1, x2, ok)
+        if self.drawer.interrupted:
+            self.interrupted = True
         return ok
             
     def draw(self,curTime,x1,x2, ok):

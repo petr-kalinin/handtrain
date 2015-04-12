@@ -1,6 +1,10 @@
 import pygameBridge
+import pygame
+from pygame.locals import * # This module contains various constants used by Pygame
 
 class PygameDrawer:
+    interrupted = False
+    
     def __init__(self):
         pygameBridge.createScreen('Test')
         
@@ -28,3 +32,10 @@ class PygameDrawer:
         
     def show(self):
         pygameBridge.show()
+        pygameBridge.requestNewEvents()
+        events = pygameBridge.getEvents()
+        for event in events:
+            if event.type == QUIT:
+                self.interrupted = True
+            if (event.type == KEYUP) and (event.key == pygame.K_ESCAPE):
+                self.interrupted = True
