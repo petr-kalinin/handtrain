@@ -24,4 +24,6 @@ class AligmentTest:
         self.drawer.drawText(str(curTime))
         self.drawer.show()
     
+    def name(self):
+        return "Aligment"
             

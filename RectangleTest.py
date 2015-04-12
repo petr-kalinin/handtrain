@@ -25,4 +25,6 @@ class RectangleTest:
         self.drawer.drawText(str(curTime))
         self.drawer.show()
     
+    def name(self):
+        return "Rectangle"
             

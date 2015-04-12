@@ -5,7 +5,7 @@ import random
 from TestSequence import TestSequence
 from AligmentTest import AligmentTest
 from RectangleTest import RectangleTest
-from FileWriter import FileWriter
+from FileWriterProvider import FileWriterProvider
 
 class DummyDrawer:
     s = ''
@@ -76,15 +76,13 @@ class ConsoleWriter:
 
 joy1 = JoystickImitator(0.2, 0.95)
 joy2 = JoystickImitator(-0.4, 0.98)
-sequence = TestSequence(joy1, joy2, DummyTimer())
+sequence = TestSequence(joy1, joy2, DummyTimer(), FileWriterProvider("test"))
 
 atest = AligmentTest(DummyDrawer())
-awriter = FileWriter("runAll_al.txt~")
-sequence.append(atest, awriter)
+sequence.append(atest)
 
 rtest = RectangleTest(DummyDrawer())
-rwriter = FileWriter("runAll_rec.txt~")
-sequence.append(rtest, rwriter)
+sequence.append(rtest)
 
 sequence.run()
 print(sequence.resDelta)
