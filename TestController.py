@@ -12,6 +12,8 @@ class TestController:
         self.writer = writer
 
     def run(self):
+        self.joystick1.reset()
+        self.joystick2.reset()
         startTime = self.timer.currentTime()
         lastBadTime = 0
         deltaSum = 0
