@@ -57,7 +57,7 @@ class JoystickImitator:
         """Returns normalized (x,y)-coordinate in [-1,1]"""
         if self._num > 10:
             self._x = self._x * self._fac + random.uniform(-1e-3, 1e-3)
-	self._num += 1
+        self._num += 1
         return (self._x, 0);
 
 class ConsoleWriter:

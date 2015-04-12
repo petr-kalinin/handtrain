@@ -27,7 +27,7 @@ class TestController:
                 deltaN += 1
                 if initialDelta < 0:
                     initialDelta = delta
-                if abs(delta - initialDelta) < 1e-3:
+                if (abs(delta - initialDelta) < 1e-3) and (abs(initialDelta) > 1e-1):
                     startTime = curTime + startTime
                     curTime = 0
                 if not ok:
@@ -45,4 +45,5 @@ class TestController:
             self.delta = deltaSum / deltaN
         else:
             self.delta = -1
+        return self.delta
             

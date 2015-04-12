@@ -18,7 +18,7 @@ class RectangleTest:
         return (ok, max(dx, dy))
 
             
-    def draw(self,curTime,x1,x2, ok):
+    def draw(self,curTime,x1,x2,ok):
         self.drawer.reset()
         self.drawer.setState(ok)
         self.drawer.drawRectangle(x1, x2)
