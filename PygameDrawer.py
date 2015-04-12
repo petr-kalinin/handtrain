@@ -2,6 +2,8 @@ import pygameBridge
 import pygame
 from pygame.locals import * # This module contains various constants used by Pygame
 
+from TestInterruptedError import TestInterruptedError
+
 class PygameDrawer:
     interrupted = False
     
@@ -36,6 +38,6 @@ class PygameDrawer:
         events = pygameBridge.getEvents()
         for event in events:
             if event.type == QUIT:
-                self.interrupted = True
+                raise TestInterruptedError()
             if (event.type == KEYUP) and (event.key == pygame.K_ESCAPE):
-                self.interrupted = True
+                raise TestInterruptedError()

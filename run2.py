@@ -5,6 +5,7 @@ import random
 from RectangleTest import RectangleTest
 from TestController import TestController
 from FileWriter import FileWriter
+from TestInterruptedError import TestInterruptedError
 #from PygameDrawer import PygameDrawer
 
 class DummyDrawer:
@@ -20,6 +21,9 @@ class DummyDrawer:
         
     def setState(self, ok):
         self.ok = ok
+        if ok:
+            raise TestInterruptedError()
+    
         
     def show(self):
         print(self.s + str(self.ok) + '\r')

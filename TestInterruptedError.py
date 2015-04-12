@@ -1,0 +1,2 @@
+class TestInterruptedError(Exception):
+    pass
