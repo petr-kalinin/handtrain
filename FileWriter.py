@@ -9,4 +9,4 @@ class FileWriter:
         self.file.write("%s %f %f\n" % (testName, time, delta))
 
     def __del__(self):
- 	self.file.close()
+        self.file.close()

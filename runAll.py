@@ -6,6 +6,7 @@ from TestSequence import TestSequence
 from AligmentTest import AligmentTest
 from RectangleTest import RectangleTest
 from FileWriterProvider import FileWriterProvider
+from Patient import Patient
 
 class DummyDrawer:
     s = ''
@@ -48,7 +49,7 @@ class DummyTimer:
         
     def sleep(self,x):
         self.time = self.time + x
-        time.sleep(x/1000)
+#        time.sleep(x/1000)
         
 class JoystickImitator:
     _x = 0
@@ -74,9 +75,11 @@ class ConsoleWriter:
     def write(self,a,b):
         print(str(a) + " " + str(b))
 
+patient = Patient()
+        
 joy1 = JoystickImitator(0.2, 0.95)
 joy2 = JoystickImitator(-0.4, 0.98)
-sequence = TestSequence(joy1, joy2, DummyTimer(), FileWriterProvider("test"))
+sequence = TestSequence(joy1, joy2, DummyTimer(), FileWriterProvider(patient.name))
 
 atest = AligmentTest(DummyDrawer())
 sequence.append(atest)
