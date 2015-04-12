@@ -7,6 +7,7 @@ from AligmentTest import AligmentTest
 from RectangleTest import RectangleTest
 from FileWriterProvider import FileWriterProvider
 from Patient import Patient
+from TkPatient import TkPatient
 
 class DummyDrawer:
     s = ''
@@ -75,7 +76,7 @@ class ConsoleWriter:
     def write(self,a,b):
         print(str(a) + " " + str(b))
 
-patient = Patient()
+patient = TkPatient()
         
 joy1 = JoystickImitator(0.2, 0.95)
 joy2 = JoystickImitator(-0.4, 0.98)
