@@ -1,5 +1,5 @@
 class AligmentTest:
-    eps = 1e-2
+    eps = 1e-1
     needX1 = 0.2;
     needX2 = -0.4;
 

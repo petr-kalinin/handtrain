@@ -1,7 +1,7 @@
 from TestInterruptedError import TestInterruptedError
 
 class TestController:
-    requiredTime = 15000
+    requiredTime = 5000
     delay = 10
 
     def __init__(self, joystick1, joystick2, timer, test, writer):

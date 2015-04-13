@@ -9,6 +9,9 @@ from FileWriterProvider import FileWriterProvider
 from Patient import Patient
 from TkPatient import TkPatient
 
+from PygameDrawer import PygameDrawer
+from PygameJoystick import PygameJoystick
+
 class DummyDrawer:
     s = ''
     s1 = ''
@@ -50,7 +53,7 @@ class DummyTimer:
         
     def sleep(self,x):
         self.time = self.time + x
-#        time.sleep(x/1000)
+        time.sleep(x/1000)
         
 class JoystickImitator:
     _x = 0
@@ -76,16 +79,21 @@ class ConsoleWriter:
     def write(self,a,b):
         print(str(a) + " " + str(b))
 
-patient = TkPatient()
+#patient = TkPatient()
+patient = Patient()
         
-joy1 = JoystickImitator(0.2, 0.95)
-joy2 = JoystickImitator(-0.4, 0.98)
+#joy1 = JoystickImitator(0.2, 0.95)
+#joy2 = JoystickImitator(-0.4, 0.98)
+joy1 = PygameJoystick(0)
+joy2 = PygameJoystick(1)
 sequence = TestSequence(joy1, joy2, DummyTimer(), FileWriterProvider(patient.name))
+#drawer = DummyDrawer()
+drawer = PygameDrawer()
 
-atest = AligmentTest(DummyDrawer())
+atest = AligmentTest(drawer)
 sequence.append(atest)
 
-rtest = RectangleTest(DummyDrawer())
+rtest = RectangleTest(drawer)
 sequence.append(rtest)
 
 sequence.run()

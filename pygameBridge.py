@@ -54,7 +54,7 @@ def show():
     pygame.display.flip()
     
 def getJoystickPosition(i):
-    return (joysticks[i].get_axis(0), joystick[i].get_axis(1))
+    return (joysticks[i].get_axis(0), joysticks[i].get_axis(1))
 
 def getEvents():
     return events
