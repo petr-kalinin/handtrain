@@ -15,7 +15,7 @@ class RectangleTest:
         dy = abs(x2 - self.needX2)
         ok = (dx<self.eps) and (dy<self.eps)
         self.draw(time, x1, x2, ok)
-        return (ok, max(dx, dy))
+        return (ok, dx + dy)
 
             
     def draw(self,curTime,x1,x2,ok):

@@ -13,7 +13,7 @@ class AligmentTest:
         delta2 = abs(x2 - self.needX2)
         ok = (delta1<self.eps) and (delta2<self.eps)
         self.draw(time, x1 - self.needX1, x2 - self.needX2, ok)
-        return (ok, max(delta1, delta2))
+        return (ok, delta1 + delta2)
             
     def draw(self,curTime,x1,x2, ok):
         self.drawer.reset()
