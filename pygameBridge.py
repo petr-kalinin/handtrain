@@ -38,12 +38,12 @@ def fillBackground(color):
     background.fill(color)
     screen.blit(background, (0,0))
     
-def drawRectangle(color, pos1, pos2):
+def drawRectangle(color, pos1, pos2, flags=0):
     x1, y1 = posToCoordinates(pos1)
     x2, y2 = posToCoordinates(pos2)
     w = x2 - x1
     h = y2 - y1
-    screen.fill(color, pygame.Rect((x1,y1), (w,h)))
+    screen.fill(color, pygame.Rect((x1,y1), (w,h)), flags)
     
 def drawText(color, pos, s):
     bmp = font.render(s, True, color)

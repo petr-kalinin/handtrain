@@ -17,9 +17,9 @@ class PygameDrawer:
     def color(self, active, ok):
         if active:
             if ok:
-                return (0,255,0)
+                return (64,255,64)
             else:
-                return (255,0,0)
+                return (255,64,64)
         else:
             return(128,128,128)
         
@@ -27,7 +27,8 @@ class PygameDrawer:
         color = self.color(active, self.okState)
         pygameBridge.drawRectangle(color, 
                                 (0.5-width/2, 0.5-height/2),
-                                (0.5+width/2, 0.5+height/2)
+                                (0.5+width/2, 0.5+height/2),
+                                BLEND_ADD
                             )
         
     def drawObject(self, x, active):
@@ -36,7 +37,7 @@ class PygameDrawer:
         dx = 0.05
         if not active:
             dx = 0.06
-        pygameBridge.drawRectangle(color, (x-dx, 0.5-dx), (x+dx, 0.5+dx))
+        pygameBridge.drawRectangle(color, (x-dx, 0.5-dx), (x+dx, 0.5+dx), BLEND_ADD)
         
     def drawText(self, s):
         pygameBridge.drawText((255,255,255), (0.05, 0.05), s)

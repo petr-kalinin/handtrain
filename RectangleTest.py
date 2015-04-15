@@ -1,7 +1,7 @@
 class RectangleTest:
     eps = 1e-1
-    needX1 = 0.6;
-    needX2 = 0.3;
+    needX1 = 0.5;
+    needX2 = 0.5;
 
     def __init__(self, drawer):
         self.drawer = drawer
@@ -21,8 +21,8 @@ class RectangleTest:
     def draw(self,curTime,x1,x2,ok):
         self.drawer.reset()
         self.drawer.setState(ok)
-        self.drawer.drawRectangle(x1, x2, True)
         self.drawer.drawRectangle(self.needX1, self.needX2, False)
+        self.drawer.drawRectangle(x1, x2, True)
         self.drawer.drawText(str(curTime))
         self.drawer.show()
     
