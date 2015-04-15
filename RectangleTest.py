@@ -1,7 +1,7 @@
 class RectangleTest:
     eps = 1e-1
-    needX1 = 0.5;
-    needX2 = 0.5;
+    needX1 = 0.7;
+    needX2 = 0.7;
 
     def __init__(self, drawer):
         self.drawer = drawer
