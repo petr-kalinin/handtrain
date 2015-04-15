@@ -2,6 +2,7 @@ import pygame, sys, os
 import atexit
 from pygame.locals import * # This module contains various constants used by Pygame
 import pygame.event
+from pygame import time
 
 pygame.init()
 pygame.joystick.init()
@@ -62,6 +63,13 @@ def getEvents():
 def requestNewEvents():
     global events
     events = pygame.event.get()
+    
+def sleep(time):
+    fps = int(1000/time)
+    clock.tick(fps)
+    
+def currentTime():
+    return pygame.time.get_ticks()
 
 @atexit.register
 def quit():

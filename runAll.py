@@ -11,6 +11,7 @@ from TkPatient import TkPatient
 
 from PygameDrawer import PygameDrawer
 from PygameJoystick import PygameJoystick
+from PygameTimer import PygameTimer
 
 class DummyDrawer:
     s = ''
@@ -86,7 +87,12 @@ patient = Patient()
 #joy2 = JoystickImitator(-0.4, 0.98)
 joy1 = PygameJoystick(0)
 joy2 = PygameJoystick(1)
-sequence = TestSequence(joy1, joy2, DummyTimer(), FileWriterProvider(patient.name))
+
+
+#timer = DummyTimer()
+timer = PygameTimer()
+
+sequence = TestSequence(joy1, joy2, timer, FileWriterProvider(patient.name))
 #drawer = DummyDrawer()
 drawer = PygameDrawer()
 
