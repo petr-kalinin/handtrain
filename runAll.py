@@ -80,8 +80,8 @@ class ConsoleWriter:
     def write(self,a,b):
         print(str(a) + " " + str(b))
 
-#patient = TkPatient()
-patient = Patient()
+patient = TkPatient()
+#patient = Patient()
         
 #drawer = DummyDrawer()
 drawer = PygameDrawer()
