@@ -8,8 +8,13 @@ class PygameDrawer:
     interrupted = False
     okState = False
     
-    def __init__(self):
+    def __init__(self, imageFile = None):
         pygameBridge.createScreen('Test')
+        if imageFile is None:
+            self.image = pygameBridge.square(0.05)
+            self.imageSize = (0.05, 0.05)
+        else:
+            self.image, self.imageSize = pygameBridge.imageFromFile(imageFile)
         
     def reset(self):
         pygameBridge.fillBackground((0,0,0))
@@ -34,10 +39,12 @@ class PygameDrawer:
     def drawObject(self, x, active):
         print("object @" + str(x))
         color = self.color(active, self.okState)
-        dx = 0.05
+        w, h = self.imageSize
         if not active:
-            dx = 0.06
-        pygameBridge.drawRectangle(color, (x-dx, 0.5-dx), (x+dx, 0.5+dx), BLEND_ADD)
+            pygameBridge.drawRectangle(color, (x-w*0.55, 0.5-h*0.55), (x+w*0.55, 0.5+h*0.55), BLEND_ADD)
+        else:
+            pygameBridge.drawImage(color, (x-w*0.5, 0.5-h*0.5), self.image, BLEND_ADD)
+
         
     def drawText(self, s):
         pygameBridge.drawText((255,255,255), (0.01, 0.01), s)

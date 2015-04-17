@@ -84,7 +84,7 @@ patient = TkPatient()
 #patient = Patient()
         
 #drawer = DummyDrawer()
-drawer = PygameDrawer()
+drawer = PygameDrawer("hedgehog.png")
 
 #joy1 = JoystickImitator(0.2, 0.95)
 #joy2 = JoystickImitator(-0.4, 0.98)

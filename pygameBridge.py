@@ -40,12 +40,18 @@ def fillBackground(color):
     background.fill(color)
     screen.blit(background, (0,0))
     
-def drawRectangle(color, pos1, pos2, flags=0):
+def drawRectangle(color, pos1, pos2, flags=0, pixelCoord = False):
     x1, y1 = posToCoordinates(pos1)
     x2, y2 = posToCoordinates(pos2)
     w = x2 - x1
     h = y2 - y1
     screen.fill(color, pygame.Rect((x1,y1), (w,h)), flags)
+    
+def drawImage(color, pos, image, flags=0):
+    pic = pygame.Surface(image.get_size()).convert()
+    pic.fill(color)
+    pic.blit(image, (0,0), None, BLEND_MULT)
+    screen.blit(pic, posToCoordinates(pos), None, flags)
     
 def drawText(color, pos, s, center = False):
     bmp = font.render(s, True, color)
@@ -73,6 +79,17 @@ def sleep(time):
     
 def currentTime():
     return pygame.time.get_ticks()
+
+def square(size):
+    w,h = posToCoordinates((size, size))
+    res = pygame.Surface((w,h)).convert()
+    res.fill((255,255,255))
+    return res
+
+def imageFromFile(fileName):
+    res = pygame.image.load(fileName).convert()
+    x, y = res.get_size()
+    return res, (x/dimensions[0], y/dimensions[1])
 
 @atexit.register
 def quit():
