@@ -40,7 +40,10 @@ class PygameDrawer:
         pygameBridge.drawRectangle(color, (x-dx, 0.5-dx), (x+dx, 0.5+dx), BLEND_ADD)
         
     def drawText(self, s):
-        pygameBridge.drawText((255,255,255), (0.05, 0.05), s)
+        pygameBridge.drawText((255,255,255), (0.01, 0.01), s)
+
+    def drawCenterText(self, s):
+        pygameBridge.drawText((255,255,255), (0.5, 0.5), s, True)
         
     def setState(self, ok):
         self.okState = ok

@@ -47,10 +47,12 @@ def drawRectangle(color, pos1, pos2, flags=0):
     h = y2 - y1
     screen.fill(color, pygame.Rect((x1,y1), (w,h)), flags)
     
-def drawText(color, pos, s):
+def drawText(color, pos, s, center = False):
     bmp = font.render(s, True, color)
     x,y = posToCoordinates(pos)
-    screen.blit(bmp, pos)
+    if center:
+        x = x - bmp.get_width()/2
+    screen.blit(bmp, (x,y))
     
 def show():
     pygame.display.flip()

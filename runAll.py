@@ -83,18 +83,19 @@ class ConsoleWriter:
 #patient = TkPatient()
 patient = Patient()
         
+#drawer = DummyDrawer()
+drawer = PygameDrawer()
+
 #joy1 = JoystickImitator(0.2, 0.95)
 #joy2 = JoystickImitator(-0.4, 0.98)
-joy1 = PygameJoystick(0)
-joy2 = PygameJoystick(1)
+joy1 = PygameJoystick(0, drawer)
+joy2 = PygameJoystick(1, drawer)
 
 
 #timer = DummyTimer()
 timer = PygameTimer()
 
 sequence = TestSequence(joy1, joy2, timer, FileWriterProvider(patient.name))
-#drawer = DummyDrawer()
-drawer = PygameDrawer()
 
 atest = AligmentTest(drawer)
 sequence.append(atest)
