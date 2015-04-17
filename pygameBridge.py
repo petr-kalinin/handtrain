@@ -29,10 +29,11 @@ def posToCoordinates(pos):
     return (x,y)
 
 def createScreen(caption):
-    global screen
-    pygame.display.set_mode(dimensions)
+    global screen, dimensions
+    pygame.display.set_mode((0,0), pygame.FULLSCREEN)
     pygame.display.set_caption(caption)
     screen = pygame.display.get_surface()
+    dimensions = screen.get_size()
 
 def fillBackground(color):
     background = pygame.Surface(screen.get_size()).convert()
