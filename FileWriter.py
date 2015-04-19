@@ -1,3 +1,5 @@
+import unittest
+
 class FileWriter:
     def __init__(self, fileName):
         self.file = open(fileName, "w")
@@ -10,3 +12,13 @@ class FileWriter:
 
     def __del__(self):
         self.file.close()
+        
+class FileWriterTest(unittest.TestCase):
+    def testOne(self):
+        pass
+        
+def main():
+    unittest.main()
+
+if __name__ == '__main__':
+    main()
