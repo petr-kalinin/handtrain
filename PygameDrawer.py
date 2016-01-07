@@ -8,16 +8,28 @@ class PygameDrawer:
     interrupted = False
     okState = False
     
-    def __init__(self, imageFile = None):
+    def __init__(self, imageFile = None, bgColor = (0,0,0)):
+        self.bgColor = bgColor
+        self.mode = self.getMode()
         pygameBridge.createScreen('Test')
         if imageFile is None:
             self.image = pygameBridge.square(0.05)
             self.imageSize = (0.05, 0.05)
         else:
             self.image, self.imageSize = pygameBridge.imageFromFile(imageFile)
+            
+    def getMode(self):
+        avgBg = sum(self.bgColor)
+        if avgBg > 255 * 3 / 2:
+            return 0#BLEND_SUB
+        else:
+            return 0#BLEND_ADD
         
     def reset(self):
-        pygameBridge.fillBackground((0,0,0))
+        pygameBridge.fillBackground(self.bgColor)
+        
+    def textColor(self):
+        return list((255-x for x in self.bgColor))
         
     def color(self, active, ok):
         if active:
@@ -33,7 +45,7 @@ class PygameDrawer:
         pygameBridge.drawRectangle(color, 
                                 (0.5-width/2, 0.5-height/2),
                                 (0.5+width/2, 0.5+height/2),
-                                BLEND_ADD
+                                self.mode
                             )
         
     def drawObject(self, x, active):
@@ -41,16 +53,16 @@ class PygameDrawer:
         color = self.color(active, self.okState)
         w, h = self.imageSize
         if not active:
-            pygameBridge.drawRectangle(color, (x-w*0.55, 0.5-h*0.55), (x+w*0.55, 0.5+h*0.55), BLEND_ADD)
+            pygameBridge.drawRectangle(color, (x-w*0.55, 0.5-h*0.55), (x+w*0.55, 0.5+h*0.55), self.mode)
         else:
-            pygameBridge.drawImage(color, (x-w*0.5, 0.5-h*0.5), self.image, BLEND_ADD)
+            pygameBridge.drawImage(color, (x-w*0.5, 0.5-h*0.5), self.image, self.mode)
 
         
     def drawText(self, s):
-        pygameBridge.drawText((255,255,255), (0.01, 0.01), s)
+        pygameBridge.drawText(self.textColor(), (0.01, 0.01), s)
 
     def drawCenterText(self, s):
-        pygameBridge.drawText((255,255,255), (0.5, 0.5), s, True)
+        pygameBridge.drawText(self.textColor(), (0.5, 0.5), s, True)
         
     def setState(self, ok):
         self.okState = ok

@@ -48,9 +48,11 @@ def drawRectangle(color, pos1, pos2, flags=0, pixelCoord = False):
     screen.fill(color, pygame.Rect((x1,y1), (w,h)), flags)
     
 def drawImage(color, pos, image, flags=0):
-    pic = pygame.Surface(image.get_size()).convert()
+    pic = pygame.Surface(image.get_size()).convert_alpha()
+    color = list(color)
+    color.append(255)
     pic.fill(color)
-    pic.blit(image, (0,0), None, BLEND_MULT)
+    pic.blit(image, (0,0), None, BLEND_RGBA_MULT)
     screen.blit(pic, posToCoordinates(pos), None, flags)
     
 def drawText(color, pos, s, center = False):
@@ -87,7 +89,7 @@ def square(size):
     return res
 
 def imageFromFile(fileName):
-    res = pygame.image.load(fileName).convert()
+    res = pygame.image.load(fileName).convert_alpha()
     x, y = res.get_size()
     return res, (x/dimensions[0], y/dimensions[1])
 

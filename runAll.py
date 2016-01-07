@@ -84,7 +84,9 @@ patient = TkPatient()
 #patient = Patient()
         
 #drawer = DummyDrawer()
-drawer = PygameDrawer("hedgehog.png")
+#drawer = PygameDrawer("hedgehog.png")
+drawer = PygameDrawer("circle-200x20px.png", (255,255,255))
+#drawer = PygameDrawer("circle-200x20px.png", (0,0,0))
 
 #joy1 = JoystickImitator(0.2, 0.95)
 #joy2 = JoystickImitator(-0.4, 0.98)
@@ -100,8 +102,8 @@ sequence = TestSequence(joy1, joy2, timer, FileWriterProvider(patient.name))
 atest = AligmentTest(drawer)
 sequence.append(atest)
 
-rtest = RectangleTest(drawer)
-sequence.append(rtest)
+#rtest = RectangleTest(drawer)
+#sequence.append(rtest)
 
 sequence.run()
 print(sequence.resDelta)
