@@ -1,3 +1,6 @@
+import unittest
+from unittest.mock import MagicMock
+
 class AligmentTest:
     eps = 1e-1
     needX1 = 0.5;
@@ -27,3 +30,20 @@ class AligmentTest:
     def name(self):
         return "Aligment"
             
+class AligmentTestTest(unittest.TestCase):
+    def test_name(self):
+        test = AligmentTest(None)
+        self.assertEqual(test.name(), "Aligment")
+        
+    def test_process(self):
+        drawerMock = MagicMock()
+        test = AligmentTest(drawerMock)
+        res = test.process(10, 1, -1)
+        self.assertEqual(res, (False, 1))
+        pass
+        
+def main():
+    unittest.main()
+
+if __name__ == '__main__':
+    main()
