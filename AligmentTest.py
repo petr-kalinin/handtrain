@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import MagicMock
+from mock import MagicMock
 
 class AligmentTest:
     eps = 1e-1
