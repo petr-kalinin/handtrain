@@ -1,5 +1,5 @@
 import unittest
-from mock import MagicMock
+#from mock import MagicMock
 
 class AligmentTest:
     eps = 1e-1
@@ -24,7 +24,7 @@ class AligmentTest:
         self.drawer.drawObject(0.5, False)
         self.drawer.drawObject((1+x1)/2, True)
         self.drawer.drawObject((1+x2)/2, True)
-        self.drawer.drawText(str(curTime))
+        self.drawer.drawText(str(curTime/1000))
         self.drawer.show()
     
     def name(self):
