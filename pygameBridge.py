@@ -45,7 +45,8 @@ def drawRectangle(color, pos1, pos2, flags=0, pixelCoord = False):
     x2, y2 = posToCoordinates(pos2)
     w = x2 - x1
     h = y2 - y1
-    screen.fill(color, pygame.Rect((x1,y1), (w,h)), flags)
+    #screen.fill(color, pygame.Rect((x1,y1), (w,h)), flags)
+    pygame.draw.ellipse(screen, color, pygame.Rect((x1,y1), (w,h)), 5)
     
 def drawImage(color, pos, image, flags=0):
     pic = pygame.Surface(image.get_size()).convert_alpha()

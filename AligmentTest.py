@@ -29,6 +29,7 @@ class AligmentTest:
     
     def name(self):
         return "Aligment"
+
             
 class AligmentTestTest(unittest.TestCase):
     def test_name(self):

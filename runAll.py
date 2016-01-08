@@ -13,6 +13,8 @@ from PygameDrawer import PygameDrawer
 from PygameJoystick import PygameJoystick
 from PygameTimer import PygameTimer
 
+from TkRequiredTime import tkRequiredTime
+
 class DummyDrawer:
     s = ''
     s1 = ''
@@ -83,6 +85,8 @@ class ConsoleWriter:
 patient = TkPatient()
 #patient = Patient()
         
+reqTime = tkRequiredTime()
+
 #drawer = DummyDrawer()
 #drawer = PygameDrawer("hedgehog.png")
 drawer = PygameDrawer("circle-200x20px.png", (255,255,255))
@@ -97,7 +101,7 @@ joy2 = PygameJoystick(1, drawer)
 #timer = DummyTimer()
 timer = PygameTimer()
 
-sequence = TestSequence(joy1, joy2, timer, FileWriterProvider(patient.name))
+sequence = TestSequence(joy1, joy2, timer, FileWriterProvider(patient.name), reqTime)
 
 atest = AligmentTest(drawer)
 sequence.append(atest)

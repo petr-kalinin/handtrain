@@ -34,9 +34,11 @@ class PygameDrawer:
     def color(self, active, ok):
         if active:
             if ok:
-                return (64,255,64)
+                #return (64,255,64)
+                return (128,128,128)
             else:
-                return (255,64,64)
+                #return (255,64,64)
+                return (0,0,0)
         else:
             return(128,128,128)
         
@@ -53,7 +55,7 @@ class PygameDrawer:
         color = self.color(active, self.okState)
         w, h = self.imageSize
         if not active:
-            pygameBridge.drawRectangle(color, (x-w*0.55, 0.5-h*0.55), (x+w*0.55, 0.5+h*0.55), self.mode)
+            pygameBridge.drawRectangle(color, (x-w*0.5, 0.5-h*0.5), (x+w*0.5, 0.5+h*0.5), self.mode)
         else:
             pygameBridge.drawImage(color, (x-w*0.5, 0.5-h*0.5), self.image, self.mode)
 

@@ -1,15 +1,15 @@
 from TestInterruptedError import TestInterruptedError
 
 class TestController:
-    requiredTime = 5000
     delay = 10
 
-    def __init__(self, joystick1, joystick2, timer, test, writer):
+    def __init__(self, joystick1, joystick2, timer, test, writer, requiredTime = 5000):
         self.joystick1 = joystick1
         self.joystick2 = joystick2
         self.timer = timer
         self.test = test
         self.writer = writer
+        self.requiredTime = requiredTime
 
     def run(self):
         self.joystick1.reset()
