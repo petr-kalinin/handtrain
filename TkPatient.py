@@ -25,7 +25,7 @@ class TkPatient(Patient):
         y = h/2 - rootsize[1]/2
         print(rootsize)
         root.geometry("%dx%d+%d+%d" % (rootsize + (x, y)))
-        
+
         root.mainloop()
         
         self.name = name.get()

@@ -26,6 +26,8 @@ def tkRequiredTime():
     print(rootsize)
     root.geometry("%dx%d+%d+%d" % (rootsize + (x, y)))
     
+    root.after(100, lambda: [root.focus_force(), entry.focus_set()])
+        
     root.mainloop()
     
     print("Done: " + name.get())
