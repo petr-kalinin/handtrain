@@ -28,13 +28,13 @@ class AligmentTest:
         self.drawer.show()
     
     def name(self):
-        return "Aligment"
+        return "Alignment"
 
             
 class AligmentTestTest(unittest.TestCase):
     def test_name(self):
         test = AligmentTest(None)
-        self.assertEqual(test.name(), "Aligment")
+        self.assertEqual(test.name(), "Alignment")
         
     def test_process(self):
         drawerMock = MagicMock()
