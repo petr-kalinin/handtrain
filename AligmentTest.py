@@ -9,9 +9,9 @@ class AligmentTest:
     def __init__(self, drawer):
         self.drawer = drawer
 
-    def process(self, time, pos1, pos2):
-        x1, y1 = pos1
-        x2, y2 = pos2
+    def process(self, time, pos):
+        x1, y1 = pos[0]
+        x2, y2 = pos[1]
         delta1 = abs(x1 - self.needX1)
         delta2 = abs(x2 - self.needX2)
         ok = (delta1<self.eps) and (delta2<self.eps)

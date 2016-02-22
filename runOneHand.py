@@ -3,7 +3,7 @@ import time
 import random
 
 from TestSequence import TestSequence
-from AligmentTest import AligmentTest
+from AligmentOneHandTest import AligmentOneHandTest
 from RectangleTest import RectangleTest
 from FileWriterProvider import FileWriterProvider
 from Patient import Patient
@@ -14,6 +14,8 @@ from PygameJoystick import PygameJoystick
 from PygameTimer import PygameTimer
 
 from TkRequiredTime import tkRequiredTime
+
+from JoystickImitator import JoystickImitator
 
 class DummyDrawer:
     s = ''
@@ -57,26 +59,6 @@ class DummyTimer:
     def sleep(self,x):
         self.time = self.time + x
         time.sleep(x/1000)
-        
-class JoystickImitator:
-    _x = 0
-    _x0 = 0
-    _fac = 0
-    _num = 0
-    def __init__(self, x0, fac):
-        self._x0 = x0
-        self._fac = fac
-        self.reset()
-        
-    def position(self):
-        """Returns normalized (x,y)-coordinate in [-1,1]"""
-        if self._num > 10:
-            self._x = self._x0 + (self._x - self._x0) * self._fac + random.uniform(-1e-3, 1e-3)
-        self._num += 1
-        return (self._x, 0);
-        
-    def reset(self):
-        self._x = random.uniform(-1, 1)
 
 class ConsoleWriter:
     def write(self,a,b):
@@ -89,25 +71,21 @@ reqTime = tkRequiredTime()
 
 #drawer = DummyDrawer()
 #drawer = PygameDrawer("hedgehog.png")
-drawer = PygameDrawer("circle-200x20px.png", (255,255,255))
+drawer = PygameDrawer("circle-200x20px.png", (255,255,255), (255, 64, 64), (0, 0, 0), (255, 64, 64))
 #drawer = PygameDrawer("circle-200x20px.png", (0,0,0))
 
-#joy1 = JoystickImitator(0.2, 0.95)
-#joy2 = JoystickImitator(-0.4, 0.98)
-joy1 = PygameJoystick(0, drawer)
-joy2 = PygameJoystick(1, drawer)
+#joy1 = JoystickImitator(0.5, 0.95)
+joy1 = JoystickImitator(0.5, 1)
+#joy1 = PygameJoystick(0, drawer)
 
 
 #timer = DummyTimer()
 timer = PygameTimer()
 
-sequence = TestSequence(joy1, joy2, timer, FileWriterProvider(patient.name), reqTime)
+sequence = TestSequence([joy1], timer, FileWriterProvider(patient.name), reqTime)
 
-atest = AligmentTest(drawer)
+atest = AligmentOneHandTest(drawer)
 sequence.append(atest)
-
-#rtest = RectangleTest(drawer)
-#sequence.append(rtest)
 
 sequence.run()
 print(sequence.resDelta)

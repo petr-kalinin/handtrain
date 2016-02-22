@@ -2,18 +2,18 @@ from TestInterruptedError import TestInterruptedError
 
 class TestController:
     delay = 10
+    maxTime = 5 * 60 * 1000
 
-    def __init__(self, joystick1, joystick2, timer, test, writer, requiredTime = 5000):
-        self.joystick1 = joystick1
-        self.joystick2 = joystick2
+    def __init__(self, joysticks, timer, test, writer, requiredTime = 5000):
+        self.joysticks = joysticks
         self.timer = timer
         self.test = test
         self.writer = writer
         self.requiredTime = requiredTime
 
     def run(self):
-        self.joystick1.reset()
-        self.joystick2.reset()
+        for j in self.joysticks:
+            j.reset()
         startTime = self.timer.currentTime()
         lastBadTime = 0
         deltaSum = 0
@@ -22,9 +22,8 @@ class TestController:
         try:
             while True:
                 curTime = self.timer.currentTime() - startTime
-                pos1 = self.joystick1.position()
-                pos2 = self.joystick2.position()
-                ok, delta = self.test.process(curTime, pos1, pos2)
+                pos = list(j.position() for j in self.joysticks)
+                ok, delta = self.test.process(curTime, pos)
                 deltaSum += delta
                 deltaN += 1
                 if initialDelta < 0:
@@ -38,6 +37,8 @@ class TestController:
                     deltaN = 0
                 if lastBadTime < curTime-self.requiredTime:
                     break
+                if curTime > self.maxTime:
+                    raise TestInterruptedError
                 self.writer.write(curTime, delta)
                 self.timer.sleep(self.delay)
         except TestInterruptedError:

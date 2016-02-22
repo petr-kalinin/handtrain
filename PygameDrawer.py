@@ -8,9 +8,12 @@ class PygameDrawer:
     interrupted = False
     okState = False
     
-    def __init__(self, imageFile = None, bgColor = (0,0,0)):
+    def __init__(self, imageFile = None, bgColor = (0,0,0), okColor = (128, 128, 128), activeColor = (0, 0, 0), targetColor = (128, 128, 128)):
         self.bgColor = bgColor
         self.mode = self.getMode()
+        self.okColor = okColor
+        self.activeColor = activeColor
+        self.targetColor = targetColor
         pygameBridge.createScreen('Test')
         if imageFile is None:
             self.image = pygameBridge.square(0.05)
@@ -35,12 +38,12 @@ class PygameDrawer:
         if active:
             if ok:
                 #return (64,255,64)
-                return (128,128,128)
+                return self.okColor
             else:
                 #return (255,64,64)
-                return (0,0,0)
+                return self.activeColor
         else:
-            return(128,128,128)
+            return self.targetColor
         
     def drawRectangle(self, width, height, active):
         color = self.color(active, self.okState)
@@ -55,9 +58,11 @@ class PygameDrawer:
         color = self.color(active, self.okState)
         w, h = self.imageSize
         if not active:
-            pygameBridge.drawRectangle(color, (x-w*0.5, 0.5-h*0.5), (x+w*0.5, 0.5+h*0.5), self.mode)
+            pygameBridge.drawRectangle(color, (x-w*0.5, 0.5-h*0.5), (x+w*0.5, 0.5+h*0.5), self.mode, False, (-10, -10))
+            pygameBridge.drawMark(color, (x, 0.5), self.mode)
         else:
             pygameBridge.drawImage(color, (x-w*0.5, 0.5-h*0.5), self.image, self.mode)
+            pygameBridge.drawMark(color, (x, 0.5), self.mode)
 
         
     def drawText(self, s):

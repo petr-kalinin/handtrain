@@ -40,13 +40,22 @@ def fillBackground(color):
     background.fill(color)
     screen.blit(background, (0,0))
     
-def drawRectangle(color, pos1, pos2, flags=0, pixelCoord = False):
+def drawRectangle(color, pos1, pos2, flags=0, pixelCoord = False, pixelSizeCorr = (0, 0)):
     x1, y1 = posToCoordinates(pos1)
     x2, y2 = posToCoordinates(pos2)
+    x1 -= pixelSizeCorr[0] / 2
+    y1 -= pixelSizeCorr[1] / 2
+    x2 += pixelSizeCorr[0] / 2
+    y2 += pixelSizeCorr[1] / 2
     w = x2 - x1
     h = y2 - y1
     #screen.fill(color, pygame.Rect((x1,y1), (w,h)), flags)
     pygame.draw.ellipse(screen, color, pygame.Rect((x1,y1), (w,h)), 5)
+
+def drawMark(color, pos1, flags=0):
+    x, y = posToCoordinates(pos1)
+    pygame.draw.line(screen, color, (x-10, y), (x+10, y))
+    pygame.draw.line(screen, color, (x, y-10), (x, y+10))
     
 def drawImage(color, pos, image, flags=0):
     pic = pygame.Surface(image.get_size()).convert_alpha()

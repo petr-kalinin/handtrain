@@ -3,17 +3,15 @@ from TestController import TestController
 class TestSequence:
     seq = []
     
-    def __init__(self, joystick1, joystick2, timer, writerProvider, requiredTime = 5000):
-        self.joystick1 = joystick1
-        self.joystick2 = joystick2
+    def __init__(self, joysticks, timer, writerProvider, requiredTime = 5000):
+        self.joysticks = joysticks
         self.timer = timer
         self.writerProvider = writerProvider
         self.writer = writerProvider.getWriter("result")
         self.requiredTime = requiredTime
         
     def append(self, test):
-        self.seq.append(TestController(self.joystick1,
-                                        self.joystick2,
+        self.seq.append(TestController(self.joysticks,
                                         self.timer,
                                         test,
                                         self.writerProvider.getWriter(test.name()),
