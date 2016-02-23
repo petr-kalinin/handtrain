@@ -74,10 +74,10 @@ reqTime = tkRequiredTime()
 drawer = PygameDrawer("circle-200x20px.png", (255,255,255))
 #drawer = PygameDrawer("circle-200x20px.png", (0,0,0))
 
-joy1 = JoystickImitator(0.5, 0.95)
-joy2 = JoystickImitator(-0.5, 0.98)
-#joy1 = PygameJoystick(0, drawer)
-#joy2 = PygameJoystick(1, drawer)
+#joy1 = JoystickImitator(0.5, 0.95)
+#joy2 = JoystickImitator(-0.5, 0.98)
+joy1 = PygameJoystick(0, drawer)
+joy2 = PygameJoystick(1, drawer)
 
 
 #timer = DummyTimer()

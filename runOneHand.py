@@ -75,8 +75,8 @@ drawer = PygameDrawer("circle-200x20px.png", (255,255,255), (255, 64, 64), (0, 0
 #drawer = PygameDrawer("circle-200x20px.png", (0,0,0))
 
 #joy1 = JoystickImitator(0.5, 0.95)
-joy1 = JoystickImitator(0.5, 1)
-#joy1 = PygameJoystick(0, drawer)
+#joy1 = JoystickImitator(0.5, 1)
+joy1 = PygameJoystick(0, drawer)
 
 
 #timer = DummyTimer()

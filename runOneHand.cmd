@@ -1,1 +1,1 @@
-c:\python32\python runTwoHands.py
+c:\python32\python runOneHand.py
