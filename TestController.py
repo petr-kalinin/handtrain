@@ -39,7 +39,8 @@ class TestController:
                     break
                 if curTime > self.maxTime:
                     raise TestInterruptedError
-                self.writer.write(curTime, delta)
+                if self.writer:
+                    self.writer.write(curTime, delta)
                 self.timer.sleep(self.delay)
         except TestInterruptedError:
             pass

@@ -53,16 +53,16 @@ class PygameDrawer:
                                 self.mode
                             )
         
-    def drawObject(self, x, active):
-        print("object @" + str(x))
+    def drawObject(self, x, y, active):
+        print("object @{},{}".format(x, y))
         color = self.color(active, self.okState)
         w, h = self.imageSize
         if not active:
-            pygameBridge.drawRectangle(color, (x-w*0.5, 0.5-h*0.5), (x+w*0.5, 0.5+h*0.5), self.mode, False, (-10, -10))
-            pygameBridge.drawMark(color, (x, 0.5), self.mode)
+            pygameBridge.drawRectangle(color, (x-w*0.5, y-h*0.5), (x+w*0.5, y+h*0.5), self.mode, False, (-10, -10))
+            pygameBridge.drawMark(color, (x, y), self.mode)
         else:
-            pygameBridge.drawImage(color, (x-w*0.5, 0.5-h*0.5), self.image, self.mode)
-            pygameBridge.drawMark(color, (x, 0.5), self.mode)
+            pygameBridge.drawImage(color, (x-w*0.5, y-h*0.5), self.image, self.mode)
+            pygameBridge.drawMark(color, (x, y), self.mode)
 
         
     def drawText(self, s):
