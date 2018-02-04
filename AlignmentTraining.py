@@ -3,7 +3,7 @@ from MovableObject import MovableObject
 
 class AlignmentTraining:
     eps = 5e-2
-    dt = 0.01
+    dt = 0.002
 
     def __init__(self, drawer, xa, ya, xb, yb):
         self.drawer = drawer

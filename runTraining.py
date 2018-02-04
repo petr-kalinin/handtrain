@@ -11,7 +11,7 @@ from PygameTimer import PygameTimer
 
 from JoystickImitator import JoystickImitator
 
-reqTime = 3000
+reqTime = 1000
 
 # drawer = DummyDrawer()
 drawer = PygameDrawer("hedgehog_140px.png", activeColor=(128, 128, 128), okColor=(0, 255, 0))
@@ -26,9 +26,10 @@ timer = PygameTimer()
 
 sequence = TestSequence([joy1, joy2], timer, None, reqTime)
 
-sequence.append(AlignmentTraining(drawer, 0.1, 0.5, 0.9, 0.5))
-sequence.append(AlignmentTraining(drawer, 0.5, 0.1, 0.5, 0.9))
-sequence.append(AlignmentTraining(drawer, 0.1, 0.1, 0.9, 0.9))
+sequence.append(AlignmentTraining(drawer, 0.1, 0.45, 0.9, 0.55))
+sequence.append(AlignmentTraining(drawer, 0.45, 0.1, 0.55, 0.9))
+sequence.append(AlignmentTraining(drawer, 0.15, 0.05, 0.9, 0.9))
+sequence.append(AlignmentTraining(drawer, 0.9, 0.1, 0.1, 0.9))
 
 
 sequence.run()
