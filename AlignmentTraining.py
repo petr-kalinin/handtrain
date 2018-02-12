@@ -39,11 +39,9 @@ class AlignmentTraining:
         self.drawer.show()
 
     def drawObject(self, ok, line, object):
-        angle = math.atan2(line[3] - object.y, -line[2] + object.x)
         self.drawer.drawObject(line[2], line[3], False)
         self.drawer.setState(ok)
-        print("angle=", angle)
-        self.drawer.drawObject(object.x, object.y, True, angle=angle)
+        self.drawer.drawObject(object.x, object.y, True, angle=(-line[2] + object.x, line[3] - object.y))
         self.drawer.drawLine((object.x, object.y), (line[2], line[3]))
 
     def name(self):
