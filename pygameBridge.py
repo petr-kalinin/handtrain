@@ -3,6 +3,7 @@ import atexit
 from pygame.locals import * # This module contains various constants used by Pygame
 import pygame.event
 from pygame import time
+import math
 
 pygame.init()
 pygame.joystick.init()
@@ -56,7 +57,12 @@ def drawMark(color, pos1, flags=0):
     x, y = posToCoordinates(pos1)
     pygame.draw.line(screen, color, (x-10, y), (x+10, y))
     pygame.draw.line(screen, color, (x, y-10), (x, y+10))
-    
+
+def drawLine(color, pos1, pos2):
+    c1 = posToCoordinates(pos1)
+    c2 = posToCoordinates(pos2)
+    pygame.draw.line(screen, color, c1, c2)
+
 def drawImage(color, pos, image, flags=0):
     pic = pygame.Surface(image.get_size()).convert_alpha()
     color = list(color)
@@ -102,6 +108,9 @@ def imageFromFile(fileName):
     res = pygame.image.load(fileName).convert_alpha()
     x, y = res.get_size()
     return res, (x/dimensions[0], y/dimensions[1])
+
+def rotateImage(image, angle):
+    return pygame.transform.rotate(image, math.degrees(angle))
 
 @atexit.register
 def quit():
