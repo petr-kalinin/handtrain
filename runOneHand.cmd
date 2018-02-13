@@ -1,1 +1,1 @@
-c:\python32\python runOneHand.py
+c:\python36-32\python runOneHand.py
