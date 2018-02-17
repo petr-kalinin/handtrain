@@ -112,6 +112,9 @@ def imageFromFile(fileName):
 def rotateImage(image, angle):
     return pygame.transform.rotate(image, math.degrees(angle))
 
+def mirrorImage(image):
+    return pygame.transform.flip(image, True, False)
+
 @atexit.register
 def quit():
     pygame.quit()

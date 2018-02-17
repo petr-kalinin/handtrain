@@ -57,7 +57,7 @@ class PygameDrawer:
     def drawLine(self, pos1, pos2):
         pygameBridge.drawLine(self.targetColor, pos1, pos2)
         
-    def drawObject(self, x, y, active, angle=None):
+    def drawObject(self, x, y, active, angle=None, mirror=False):
         print("object @{},{}".format(x, y))
         color = self.color(active, self.okState)
         w, h = self.imageSize
@@ -65,12 +65,16 @@ class PygameDrawer:
             pygameBridge.drawRectangle(color, (x-w*0.5, y-h*0.5), (x+w*0.5, y+h*0.5), self.mode, False, (-10, -10))
             pygameBridge.drawMark(color, (x, y), self.mode)
         else:
-            if angle:
+            if isinstance(angle, float):
+                pass
+            elif angle:
                 size = pygameBridge.posToCoordinates((1, 1))
                 angle = math.atan2(angle[1] * size[1], angle[0] * size[0])
             else:
                 angle = 0
             image = pygameBridge.rotateImage(self.image, angle)
+            if mirror:
+                image = pygameBridge.mirrorImage(image)
             new_size = image.get_size()
             old_size = self.image.get_size()
             w *= new_size[0] / old_size[0]
