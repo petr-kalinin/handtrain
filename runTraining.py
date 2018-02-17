@@ -19,10 +19,10 @@ reqTime = 1000
 drawer = PygameDrawer("car_150px.png", bgColor=(255, 255, 255), activeColor=(128, 128, 128), okColor=(0, 255, 0))
 cup_drawer = PygameDrawer("cup_500px.png", bgColor=(255, 255, 255), activeColor=(128, 128, 128), okColor=(0, 255, 0))
 
-joy1 = JoystickImitator(0, 0.99, 0, 0.99)
-joy2 = JoystickImitator(0, 0.99, 0, 0.99)
-#joy1 = PygameJoystick(0, drawer)
-#joy2 = PygameJoystick(1, drawer)
+#joy1 = JoystickImitator(0, 0.95, 0, 0.95)
+#joy2 = JoystickImitator(0, 0.95, 0, 0.95)
+joy1 = PygameJoystick(0, drawer)
+joy2 = PygameJoystick(1, drawer)
 
 # timer = DummyTimer()
 timer = PygameTimer()
