@@ -19,12 +19,12 @@ class CupTraining:
         print("Positions: {} {}, {} {}".format(*pos[0], *pos[1]))
         delta1 = abs(self.object1.angle - self.neededAngle)
         ok1 = delta1<self.eps
-        #if not ok1:
-        self.object1.process(pos[0][0], self.dt)
+        if not ok1:
+            self.object1.process(pos[0][0], self.dt)
         delta2 = abs(self.object2.angle - self.neededAngle)
         ok2 = delta2<self.eps
-        #if not ok2:
-        self.object2.process(pos[1][0], self.dt)
+        if not ok2:
+            self.object2.process(pos[1][0], self.dt)
         delta1 = abs(self.object1.angle - self.neededAngle)
         delta2 = abs(self.object2.angle - self.neededAngle)
         ok1 = delta1<self.eps
