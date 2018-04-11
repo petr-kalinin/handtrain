@@ -14,9 +14,11 @@ from PygameTimer import PygameTimer
 
 from JoystickImitator import JoystickImitator
 
-def getTimePoints(time):
+def getTimePoints(time, delta):
     MIN_TIME = 20 * 1000
     SIGMA = 20 * 1000
+    if delta < 0:  # did not finish
+        return -1e20
     if time < MIN_TIME:
         return 1
     return math.exp(-((time - MIN_TIME) ** 2) / SIGMA ** 2)
@@ -66,7 +68,7 @@ print(sequence.resDelta)
 
 points = 0
 for res in sequence.resDelta:
-    points += getTimePoints(res[0])
+    points += getTimePoints(*res)
 points *= 100.0 / len(sequence.resDelta)
 if points > -1:
     while True:
