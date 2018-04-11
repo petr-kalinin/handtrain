@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# coding: utf8
 import time
 import random
 import math
@@ -12,6 +13,13 @@ from PygameJoystick import PygameJoystick
 from PygameTimer import PygameTimer
 
 from JoystickImitator import JoystickImitator
+
+def getTimePoints(time):
+    MIN_TIME = 20 * 1000
+    SIGMA = 20 * 1000
+    if time < MIN_TIME:
+        return 1
+    return math.exp(-((time - MIN_TIME) ** 2) / SIGMA ** 2)
 
 reqTime = 1000
 
@@ -44,16 +52,24 @@ sequence.append(AlignmentTraining(drawer,
                                   (0.95, 0.15, 0.15, 0.95),
                                   (0.05, 0.85, 0.85, 0.05)))
 """
-"""
 sequence.append(CupTraining(cup_drawer,
                             (0.7, 0.5),
                             (0.3, 0.5),
                             math.pi/4))
-"""
 sequence.append(AlignmentTraining(letter_drawer,
                                   (0.95, 0.15, 0.15, 0.95),
                                   (0.05, 0.85, 0.85, 0.05)))
 
 sequence.run()
+
 print(sequence.resDelta)
 
+points = 0
+for res in sequence.resDelta:
+    points += getTimePoints(res[0])
+points *= 100.0 / len(sequence.resDelta)
+if points > -1:
+    while True:
+        letter_drawer.drawCenterText("Баллы: {:0.0f}".format(points))
+        letter_drawer.show()
+        timer.sleep(10)
