@@ -31,6 +31,8 @@ class TestController:
                 if (abs(delta - initialDelta) < 1e-3) and (abs(initialDelta) > 1e-1):
                     startTime = curTime + startTime
                     curTime = 0
+                else:
+                    initialDelta = 0  # prevent further sticking to initial delta
                 if not ok:
                     lastBadTime = curTime
                     deltaSum = 0
