@@ -40,7 +40,6 @@ timer = PygameTimer()
 
 sequence = TestSequence([joy1, joy2], timer, None, reqTime)
 
-"""
 sequence.append(AlignmentTraining(drawer,
                                   (0.1, 0.45, 0.9, 0.45),
                                   (0.9, 0.55, 0.1, 0.55)))
@@ -53,11 +52,19 @@ sequence.append(AlignmentTraining(drawer,
 sequence.append(AlignmentTraining(drawer,
                                   (0.95, 0.15, 0.15, 0.95),
                                   (0.05, 0.85, 0.85, 0.05)))
-"""
 sequence.append(CupTraining(cup_drawer,
                             (0.7, 0.5),
                             (0.3, 0.5),
                             math.pi/4))
+sequence.append(AlignmentTraining(letter_drawer,
+                                  (0.1, 0.45, 0.9, 0.45),
+                                  (0.9, 0.55, 0.1, 0.55)))
+sequence.append(AlignmentTraining(letter_drawer,
+                                  (0.45, 0.1, 0.45, 0.9),
+                                  (0.55, 0.9, 0.55, 0.1)))
+sequence.append(AlignmentTraining(letter_drawer,
+                                  (0.15, 0.05, 0.95, 0.85),
+                                  (0.85, 0.95, 0.05, 0.15)))
 sequence.append(AlignmentTraining(letter_drawer,
                                   (0.95, 0.15, 0.15, 0.95),
                                   (0.05, 0.85, 0.85, 0.05)))
